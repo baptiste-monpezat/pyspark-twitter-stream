@@ -1,0 +1,26 @@
+services:
+  spark_processing:
+    restart: on-failure:5 
+    build: ./spark_processing
+    ports:
+      - "8000:9010"
+    depends_on:
+      - twitter_stream
+      - web_server
+  web_server:
+    restart: on-failure:5 
+    build: ./server
+    ports:
+      - "8002:9011"
+  twitter_stream:
+    restart: on-failure:5 
+    env_file:
+      - .env
+    build: ./twitter_listener
+    ports:
+      - "8001:9009"
+  
+
+
+
+    

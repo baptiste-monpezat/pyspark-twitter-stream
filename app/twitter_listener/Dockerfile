@@ -1,0 +1,9 @@
+FROM python:3.6
+COPY requirements.txt requirements.txt
+RUN pip install -r requirements.txt
+ENV TWITTER_API_KEY=$TWITTER_API_KEY
+ENV TWITTER_API_SECRET=$TWITTER_API_SECRET
+ENV ACCESS_TOKEN=$ACCESS_TOKEN
+ENV ACCESS_TOKEN_SECRET=$ACCESS_TOKEN_SECRET
+COPY . . 
+ENTRYPOINT ["python","twitter_hashtags.py"]
